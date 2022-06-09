@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="448a1add-1984-441f-bb4c-34562071488d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/FileScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/FileScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachineCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/VendingMachineCLI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Student/workspace/matthew-smith-student-code/module-1/17_File_IO_Writing/exercise"
+    "last_opened_file_path": "C:/Users/Student/workspace/matthew-smith-student-code/module-1/12_Polymorphism/lecture-in-class"
   }
 }]]></component>
   <component name="RecentsManager">

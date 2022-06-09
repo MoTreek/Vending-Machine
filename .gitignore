@@ -1,6 +1,9 @@
 # ignore temporary file created by Learn
 preview-curriculum.zip
+<<<<<<< HEAD
 .txt
+=======
+>>>>>>> 9f39811ffc325ed1322188d73448e20f3c1959c9
 autoconfig.yaml
 #ignore thumbnails created by windows
 Thumbs.db

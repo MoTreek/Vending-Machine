@@ -14,6 +14,9 @@ public class VendingMachineCLI {
 		this.menu = menu;
 	}
 
+	// Initialize VendingMachine
+
+
 	public void run() {
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -23,6 +26,8 @@ public class VendingMachineCLI {
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 			}
+
+			// Do what the choice says
 		}
 	}
 

@@ -2,8 +2,9 @@ package com.techelevator;
 
 import java.math.BigDecimal;
 
-public abstract class Snack {
-    private int quantity;
+public abstract class Snack implements Vendables {
+    private int quantity = 5;
+    private String name;
     private BigDecimal price;
     private String sound;
     private String location;
@@ -24,10 +25,14 @@ public abstract class Snack {
         return location;
     }
 
-    public Snack(int quantity, BigDecimal price, String location, String sound) {
-        this.quantity = quantity;
+    public String getName() {
+        return name;
+    }
+
+    public Snack(String name, BigDecimal price, String location, String sound) {
         this.price = price;
         this.location = location;
         this.sound = sound;
+        this.name = name;
     }
 }

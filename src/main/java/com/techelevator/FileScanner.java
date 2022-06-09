@@ -2,6 +2,7 @@ package com.techelevator;
 
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,6 +26,7 @@ public class FileScanner {
         } catch (FileNotFoundException fnfex) {
             System.out.println(fnfex.getMessage());
         }
+        return null;
     }
 
     private PrintWriter getPrintWriter (String outputFile) {
@@ -45,14 +47,19 @@ public class FileScanner {
         return null;
     }
 
-    public List<Snack> inventoryFiles() {
+    public List<Vendables> inventoryFiles() {
         // Create the empty List of Snacks
 
         // This will take the 'in' Scanner, and parse to create & return a List of Snacks
+        List<Vendables> snacksList = new ArrayList<>();
         try {
             while (in.hasNextLine()) {
                 String[] array = in.nextLine().split("\\|");
-                System.out.println(array[0] + " " + array[1] + " " + array[2] + " " + array[3]);
+                if (array[3].equals("Chip")){
+                    //ToDO Snack Declaration?
+                    //ToDo public Snack(String name, BigDecimal price, String location, String sound)
+                    ChipSnack snack = new ChipSnack(array[2], array[0]);
+                }
             }
         } catch (Exception e) {
             System.out.println("Exception " + e.getMessage());

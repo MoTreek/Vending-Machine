@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class VendingMachine {
     // VendingMachine needs an inventory (List of Snacks), input/output scanners (FileScanner)
     //  and money functions (CoinBox)
-    private List<Snack> snackInventory = new ArrayList<>();
+    private List<Vendables> snackInventory = new ArrayList<>();
     private FileScanner fileScanner;
 
     public VendingMachine() {

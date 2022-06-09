@@ -62,10 +62,8 @@ public class FileScanner {
                 if (array[3].equals("Chip")){
                     //ToDO Can we collapse these declarations into one?
                     //ToDo public Snack(String name, BigDecimal price, String location, String sound)
-<<<<<<< HEAD
-                    ChipSnack snack = new ChipSnack(array[2], array[0]);
 
-=======
+
                     ChipSnack snack = new ChipSnack(array[1], new BigDecimal(array[2]), array[0]);
                     snacksList.add(snack);
                 }
@@ -83,7 +81,6 @@ public class FileScanner {
                 }
                 else {
                     throw new DataFormatException(array[3] + " isn't vendable...");
->>>>>>> f43175208bf59569cb0a908b23580a17a32f9c3a
                 }
             }
         } catch (Exception e) {

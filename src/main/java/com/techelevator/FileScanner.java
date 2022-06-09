@@ -59,6 +59,7 @@ public class FileScanner {
                     //ToDO Snack Declaration?
                     //ToDo public Snack(String name, BigDecimal price, String location, String sound)
                     ChipSnack snack = new ChipSnack(array[2], array[0]);
+
                 }
             }
         } catch (Exception e) {

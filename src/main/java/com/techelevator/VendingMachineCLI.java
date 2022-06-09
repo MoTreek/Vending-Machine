@@ -10,11 +10,11 @@ public class VendingMachineCLI {
 
 	private Menu menu;
 
+	// Initialize VendingMachine
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
 
-	// Initialize VendingMachine
 
 	public void run() {
 		VendingMachine vendingMachine = new VendingMachine();
@@ -24,11 +24,13 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
-				// Call some VendingMachine method TBD
+				vendingMachine.getInventory();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
-				// Call some other method
 			}
+			//
+
+			// Make a new menu for Purchase
 
 			// Do what the choice says
 		}

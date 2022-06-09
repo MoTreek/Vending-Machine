@@ -2,9 +2,12 @@ package com.techelevator;
 
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.zip.DataFormatException;
 
 public class FileScanner {
     // 'out' will connect to the log file for... logging
@@ -54,18 +57,35 @@ public class FileScanner {
         List<Vendables> snacksList = new ArrayList<>();
         try {
             while (in.hasNextLine()) {
+                // array[0] is location, array[1] is name, array[2] is price, array[3] is type
                 String[] array = in.nextLine().split("\\|");
                 if (array[3].equals("Chip")){
-                    //ToDO Snack Declaration?
+                    //ToDO Can we collapse these declarations into one?
                     //ToDo public Snack(String name, BigDecimal price, String location, String sound)
-                    ChipSnack snack = new ChipSnack(array[2], array[0]);
+                    ChipSnack snack = new ChipSnack(array[1], new BigDecimal(array[2]), array[0]);
+                    snacksList.add(snack);
+                }
+                else if (array[3].equals("Candy")) {
+                    CandySnack snack = new CandySnack(array[1], new BigDecimal(array[2]), array[0]);
+                    snacksList.add(snack);
+                }
+                else if (array[3].equals("Gum")) {
+                    GumSnack snack = new GumSnack(array[1], new BigDecimal(array[2]), array[0]);
+                    snacksList.add(snack);
+                }
+                else if (array[3].equals("Drink")) {
+                    DrinkSnack snack = new DrinkSnack(array[1], new BigDecimal(array[2]), array[0]);
+                    snacksList.add(snack);
+                }
+                else {
+                    throw new DataFormatException(array[3] + " isn't vendable...");
                 }
             }
         } catch (Exception e) {
             System.out.println("Exception " + e.getMessage());
         }
         // Return the complete List of Snacks
-        return null;
+        return snacksList;
     }
 
 }

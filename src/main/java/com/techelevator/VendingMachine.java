@@ -19,4 +19,10 @@ public class VendingMachine {
         this.snackInventory = fileScanner.inventoryFiles();
         // Instantiate CoinBox with... nothing?
     }
+
+    public void getInventory() {
+        for (Vendables vendable : snackInventory) {
+            System.out.println(vendable.getLocation() + " " + vendable.getName() + " " + vendable.getPrice() + " " + vendable.getQuantity());
+        }
+    }
 }

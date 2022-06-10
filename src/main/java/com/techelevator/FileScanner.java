@@ -18,8 +18,12 @@ public class FileScanner {
     public FileScanner(String input, String output) {
         // Need to take a string & create a FileOutputStream
         this.out = getPrintWriter(output);
+        out.print("I worked!");
         // Need to take a string & create a Scanner connected to a file named String
         this.in = getScanner(input);
+    }
+    public void writeLog(String s) {
+        out.print(s);
     }
 
     public Scanner getScanner(String input) {
@@ -33,16 +37,18 @@ public class FileScanner {
     }
 
     private PrintWriter getPrintWriter (String outputFile) {
-        File newFile = new File(outputFile);
-
+        File file = new File(outputFile);
         try {
-            if(!newFile.exists()) {
-                newFile.createNewFile();
+            if(!file.exists()) {
+                file.createNewFile();
             }
-        } catch (IOException ioex) {
+        } catch(IOException ioex) {
             System.out.println(ioex.getMessage());
         }
-        try (PrintWriter printWriter = new PrintWriter(new FileOutputStream(newFile, false))) {
+        try {
+            PrintWriter printWriter = new PrintWriter(new FileOutputStream(file,true));
+
+            printWriter.append("anything");
             return printWriter;
         } catch (FileNotFoundException fnfex) {
             System.out.println(fnfex.getMessage());

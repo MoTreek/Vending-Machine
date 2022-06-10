@@ -20,7 +20,7 @@ public class VendingMachine {
 
     public VendingMachine() {
         // Instantiate FileScanner with two strings for input & output file
-        this.fileScanner = new FileScanner("vendingmachine.csv", "log.txt");
+        this.fileScanner = new FileScanner("vendingmachine.csv", "\\src\\main\\resources\\log.txt");
         // Instantiate & fill List of Snacks with FileScanner method inventoryFiles
         this.snackInventory = fileScanner.inventoryFiles();
         // Instantiate CoinBox with... nothing!
@@ -29,6 +29,10 @@ public class VendingMachine {
 
     public void getInventory() {
         for (Vendables vendable : snackInventory) {
+            fileScanner.writeLog("test");
+            if (vendable.getQuantity() == 0) {
+                System.out.println(vendable.getLocation() + " " + vendable.getName() + " ** SOLD OUT **");
+            }
             System.out.println(vendable.getLocation() + " " + vendable.getName() + " " + vendable.getPrice() + " " + vendable.getQuantity());
         }
     }
@@ -73,7 +77,7 @@ public class VendingMachine {
                 break;
             }
         }
-
+        // TODO: 6/10/2022 Make the product location case insensitive  
         if(selectedProduct != null) {
             // If balance is GTE price then vend vendable (decrease quantity & remove price from moneybox)
             if(moneyBox.getMoneyHeld().compareTo(selectedProduct.getPrice()) >= 0) {
@@ -81,6 +85,7 @@ public class VendingMachine {
                 if(selectedProduct.isAvailable()) {
                     selectedProduct.purchaseSnack();
                     moneyBox.subtractMoney(selectedProduct.getPrice());
+                    // TODO: 6/10/2022 Jazz up this output section, but get rid of quantity remaining? Hide it all in purchaseSnack()?
                     System.out.println(selectedProduct.getName());
                     System.out.println("$" + selectedProduct.getPrice());
                     System.out.println(selectedProduct.getSound());

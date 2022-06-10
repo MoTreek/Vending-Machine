@@ -32,7 +32,6 @@ public class MoneyBox {
         int quarters = 0;
         int dimes = 0;
         int nickels = 0;
-        int pennies = 0;
 
         while (moneyHeld.compareTo(VALUE_OF_QUARTER) >= 0) {
             quarters++;
@@ -46,8 +45,8 @@ public class MoneyBox {
             nickels++;
             subtractMoney(VALUE_OF_NICKEL);
         }
-
-        String readOut = "Here your change: " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels.";
+        // TODO: 6/10/2022 Make the readout variable on the coins that do exist? So no zero dimes etc but how to insert 'and'?
+        String readOut = "Here's your change: " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels.";
         System.out.println(readOut);
     }
 }

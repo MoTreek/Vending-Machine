@@ -20,7 +20,7 @@ public class VendingMachine {
 
     public VendingMachine() {
         // Instantiate FileScanner with two strings for input & output file
-        this.fileScanner = new FileScanner("vendingmachine.csv", "\\src\\main\\resources\\log.txt");
+        this.fileScanner = new FileScanner("vendingmachine.csv", "src\\main\\resources\\log.txt");
         // Instantiate & fill List of Snacks with FileScanner method inventoryFiles
         this.snackInventory = fileScanner.inventoryFiles();
         // Instantiate CoinBox with... nothing!

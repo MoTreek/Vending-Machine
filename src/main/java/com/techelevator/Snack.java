@@ -35,4 +35,12 @@ public abstract class Snack implements Vendables {
         this.sound = sound;
         this.name = name;
     }
+
+    public boolean isAvailable() {
+        return quantity > 0;
+    }
+
+    public void purchaseSnack() {
+        quantity -= 1;
+    };
 }

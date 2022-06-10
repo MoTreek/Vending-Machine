@@ -14,4 +14,7 @@ public interface Vendables {
 
    String getName();
 
+   void purchaseSnack();
+   boolean isAvailable();
+
 }

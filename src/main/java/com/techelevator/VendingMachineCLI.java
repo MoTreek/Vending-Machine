@@ -40,10 +40,10 @@ public class VendingMachineCLI {
 						vendingMachine.feedMoney(menu);
 
 					} else if (secondChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
-						//
+						vendingMachine.selectProduct(menu);
 
 					} else if (secondChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-
+						//
 					}
 					
 				}

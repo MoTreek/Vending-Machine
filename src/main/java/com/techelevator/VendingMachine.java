@@ -2,7 +2,9 @@ package com.techelevator;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,18 +13,47 @@ public class VendingMachine {
     //  and money functions (CoinBox)
     private List<Vendables> snackInventory = new ArrayList<>();
     private FileScanner fileScanner;
+    private MoneyBox moneyBox;
+    // Should we make a keyboard scanner here & pass it around to the methods?
 
     public VendingMachine() {
         // Instantiate FileScanner with two strings for input & output file
         this.fileScanner = new FileScanner("vendingmachine.csv", "log.txt");
         // Instantiate & fill List of Snacks with FileScanner method inventoryFiles
         this.snackInventory = fileScanner.inventoryFiles();
-        // Instantiate CoinBox with... nothing?
+        // Instantiate CoinBox with... nothing!
+        this.moneyBox = new MoneyBox();
     }
 
     public void getInventory() {
         for (Vendables vendable : snackInventory) {
             System.out.println(vendable.getLocation() + " " + vendable.getName() + " " + vendable.getPrice() + " " + vendable.getQuantity());
         }
+    }
+
+    public void feedMoney() {
+        int inputFromKeyboard = -1;
+        try(Scanner scan = new Scanner(System.in)) {
+            // Loop --
+            while (inputFromKeyboard != 0) {
+                // Show Balance
+                moneyBox.getMoneyHeld();
+                // Prompt for int or 0 to exit
+                System.out.println("Input value of dollar bill to insert (VALID DENOMINATIONS ONLY!)");
+                System.out.print("or enter 0 to exit: ");
+                inputFromKeyboard = scan.nextInt();
+                if (inputFromKeyboard != 1 || inputFromKeyboard != 5 || inputFromKeyboard != 10 || inputFromKeyboard != 20 || inputFromKeyboard != 50 || inputFromKeyboard != 100) {
+                    throw new Exception("This machine only accepts 1, 5, 10, 20, 50 and 100 dollar bills...");
+                }
+                // Cast int as BigDecimal and add to balance
+                BigDecimal balance = moneyBox.addMoney(BigDecimal.valueOf(inputFromKeyboard));
+                System.out.println("Your new balance is " + balance);
+            }
+        } catch (InputMismatchException imex) {
+            System.out.println(inputFromKeyboard + " is not a valid dollar bill...");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 }

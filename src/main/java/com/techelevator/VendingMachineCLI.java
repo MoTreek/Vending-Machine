@@ -36,8 +36,11 @@ public class VendingMachineCLI {
 					String secondChoice = (String) menu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
 
 					if (choice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
+						// VendingMachine calls MoneyBox add X money method
+						vendingMachine.feedMoney();
 
 					} else if (choice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
+						//
 
 					} else if (choice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
 

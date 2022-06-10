@@ -18,14 +18,12 @@ public class FileScanner {
     public FileScanner(String input, String output) {
         // Need to take a string & create a FileOutputStream
         this.out = getPrintWriter(output);
-        out.print("I worked!");
-        out.flush();
-        out.println("always use println...");
         // Need to take a string & create a Scanner connected to a file named String
         this.in = getScanner(input);
     }
     public void writeLog(String s) {
         out.println(s);
+        out.flush();
     }
 
     public Scanner getScanner(String input) {

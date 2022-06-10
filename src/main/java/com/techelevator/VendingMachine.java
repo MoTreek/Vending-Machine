@@ -2,13 +2,13 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
+import javax.print.attribute.standard.DateTimeAtProcessing;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class VendingMachine {
     // VendingMachine needs an inventory (List of Snacks), input/output scanners (FileScanner)
@@ -29,7 +29,7 @@ public class VendingMachine {
 
     public void getInventory() {
         for (Vendables vendable : snackInventory) {
-            fileScanner.writeLog("test");
+
             if (vendable.getQuantity() == 0) {
                 System.out.println(vendable.getLocation() + " " + vendable.getName() + " ** SOLD OUT **");
             }
@@ -43,7 +43,7 @@ public class VendingMachine {
 
         try {
             // Loop --
-
+            //writelog
             while (inputFromKeyboard != 0) {
                 // Show Balance
                 moneyBox.getMoneyHeld();
@@ -57,6 +57,9 @@ public class VendingMachine {
                 // Cast int as BigDecimal and add to balance
                 BigDecimal balance = moneyBox.addMoney(BigDecimal.valueOf(inputFromKeyboard));
                 System.out.println("Your new balance is " + balance);
+                if (inputFromKeyboard == 0) {
+                fileScanner.writeLog(String.valueOf(LocalDateTime.now()) + "Fed Money: $" + moneyBox.getMoneyHeld() );
+
             }
         } catch (InputMismatchException imex) {
             System.out.println(inputFromKeyboard + " is not a valid dollar bill...");
@@ -91,6 +94,8 @@ public class VendingMachine {
                     System.out.println(selectedProduct.getSound());
                     System.out.println(selectedProduct.getQuantity());
                     System.out.println("$" + moneyBox.getMoneyHeld());
+
+                    //printlog
                 }
                 else {
                     System.out.println("That item is sold out...");
@@ -108,5 +113,6 @@ public class VendingMachine {
     public boolean finishTransaction(){
         moneyBox.makeChange();
         return false;
+        //writelog
     }
 }

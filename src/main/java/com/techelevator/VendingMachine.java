@@ -63,11 +63,12 @@ public class VendingMachine {
     }
 
     public void selectProduct(Menu menu) {
+        System.out.println("Enter item code: ");
         String userInput = menu.getStringFromUserInput();
         Vendables selectedProduct = null;
 
         for (Vendables vendable : snackInventory ) {
-            if(userInput == vendable.getLocation()) {
+            if(userInput.equals(vendable.getLocation())) {
                 selectedProduct = vendable;
                 break;
             }
@@ -79,7 +80,12 @@ public class VendingMachine {
                 // vend vendable
                 if(selectedProduct.isAvailable()) {
                     selectedProduct.purchaseSnack();
+                    moneyBox.subtractMoney(selectedProduct.getPrice());
+                    System.out.println(selectedProduct.getName());
+                    System.out.println("$" + selectedProduct.getPrice());
                     System.out.println(selectedProduct.getSound());
+                    System.out.println(selectedProduct.getQuantity());
+                    System.out.println("$" + moneyBox.getMoneyHeld());
                 }
                 else {
                     System.out.println("That item is sold out...");
@@ -92,5 +98,10 @@ public class VendingMachine {
         else {
             System.out.println("That's not a valid item location...");
         }
+    }
+
+    public boolean finishTransaction(){
+        moneyBox.makeChange();
+        return false;
     }
 }

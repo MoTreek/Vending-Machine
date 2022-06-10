@@ -14,6 +14,8 @@ public class VendingMachineCLI {
 	private static final String SECOND_MENU_OPTION_FINISH_TRANSACTION = "Finish Transaction";
 	private static final String[] SECOND_MENU_OPTIONS = {SECOND_MENU_OPTION_FEED_MONEY, SECOND_MENU_OPTION_SELECT_PRODUCT, SECOND_MENU_OPTION_FINISH_TRANSACTION};
 
+	private boolean checker = true;
+
 	private Menu menu;
 
 	// Initialize VendingMachine
@@ -32,7 +34,8 @@ public class VendingMachineCLI {
 				// display vending machine items
 				vendingMachine.getInventory();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				while (true) {
+				checker = true;
+				while (checker) {
 					String secondChoice = (String) menu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
 
 					if (secondChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
@@ -40,10 +43,12 @@ public class VendingMachineCLI {
 						vendingMachine.feedMoney(menu);
 
 					} else if (secondChoice.equals(SECOND_MENU_OPTION_SELECT_PRODUCT)) {
+						vendingMachine.getInventory();
 						vendingMachine.selectProduct(menu);
 
 					} else if (secondChoice.equals(SECOND_MENU_OPTION_FINISH_TRANSACTION)) {
-						//
+						checker = vendingMachine.finishTransaction();
+
 					}
 					
 				}

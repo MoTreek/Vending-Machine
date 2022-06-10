@@ -17,8 +17,37 @@ public class MoneyBox {
     public BigDecimal getMoneyHeld() {
         return moneyHeld;
     }
+
     public BigDecimal addMoney(BigDecimal money) {
-     moneyHeld = moneyHeld.add(money);
+        moneyHeld = moneyHeld.add(money);
         return this.moneyHeld;
+    }
+
+    public BigDecimal subtractMoney(BigDecimal money) {
+        moneyHeld = moneyHeld.subtract(money);
+        return this.moneyHeld;
+    }
+
+    public void makeChange() {
+        int quarters = 0;
+        int dimes = 0;
+        int nickels = 0;
+        int pennies = 0;
+
+        while (moneyHeld.compareTo(VALUE_OF_QUARTER) >= 0) {
+            quarters++;
+            subtractMoney(VALUE_OF_QUARTER);
+        }
+        while (moneyHeld.compareTo(VALUE_OF_DIME) >= 0) {
+            dimes++;
+            subtractMoney(VALUE_OF_DIME);
+        }
+        while (moneyHeld.compareTo(VALUE_OF_NICKEL) >= 0) {
+            nickels++;
+            subtractMoney(VALUE_OF_NICKEL);
+        }
+
+        String readOut = "Here your change: " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels.";
+        System.out.println(readOut);
     }
 }

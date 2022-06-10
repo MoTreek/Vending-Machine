@@ -66,6 +66,10 @@ public class Menu {
 		}
 		return inputFromUserKey;
 	}
+	public String getStringFromUserInput() {
+		String userInput = in.nextLine();
 
+		return userInput;
+	}
 
 }

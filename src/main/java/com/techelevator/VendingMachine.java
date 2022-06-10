@@ -61,4 +61,36 @@ public class VendingMachine {
         }
 
     }
+
+    public void selectProduct(Menu menu) {
+        String userInput = menu.getStringFromUserInput();
+        Vendables selectedProduct = null;
+
+        for (Vendables vendable : snackInventory ) {
+            if(userInput == vendable.getLocation()) {
+                selectedProduct = vendable;
+                break;
+            }
+        }
+
+        if(selectedProduct != null) {
+            // If balance is GTE price then vend vendable (decrease quantity & remove price from moneybox)
+            if(moneyBox.getMoneyHeld().compareTo(selectedProduct.getPrice()) >= 0) {
+                // vend vendable
+                if(selectedProduct.isAvailable()) {
+                    selectedProduct.purchaseSnack();
+                    System.out.println(selectedProduct.getSound());
+                }
+                else {
+                    System.out.println("That item is sold out...");
+                }
+            }
+            else {
+                System.out.println("The " + selectedProduct.getName() + " costs " + selectedProduct.getPrice() + " and you have insufficient funds...");
+            }
+        }
+        else {
+            System.out.println("That's not a valid item location...");
+        }
+    }
 }

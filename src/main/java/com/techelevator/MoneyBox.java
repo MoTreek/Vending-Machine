@@ -18,7 +18,7 @@ public class MoneyBox {
         return moneyHeld;
     }
     public BigDecimal addMoney(BigDecimal money) {
-        this.moneyHeld.add(money);
+     moneyHeld = moneyHeld.add(money);
         return this.moneyHeld;
     }
 }

@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import com.techelevator.view.Menu;
+
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -31,18 +33,21 @@ public class VendingMachine {
         }
     }
 
-    public void feedMoney() {
+    public void feedMoney(Menu menu) {
+        //Tried to make a scanner, but it bombed the whole menu. Copied and modified userInput method from menu and pass it in.
         int inputFromKeyboard = -1;
-        try(Scanner scan = new Scanner(System.in)) {
+
+        try {
             // Loop --
+
             while (inputFromKeyboard != 0) {
                 // Show Balance
                 moneyBox.getMoneyHeld();
                 // Prompt for int or 0 to exit
                 System.out.println("Input value of dollar bill to insert (VALID DENOMINATIONS ONLY!)");
                 System.out.print("or enter 0 to exit: ");
-                inputFromKeyboard = scan.nextInt();
-                if (inputFromKeyboard != 1 || inputFromKeyboard != 5 || inputFromKeyboard != 10 || inputFromKeyboard != 20 || inputFromKeyboard != 50 || inputFromKeyboard != 100) {
+                inputFromKeyboard = menu.getIntFromUserInput();
+                if (inputFromKeyboard != 1 && inputFromKeyboard != 5 && inputFromKeyboard != 10 && inputFromKeyboard != 20 && inputFromKeyboard != 50 && inputFromKeyboard != 100 && inputFromKeyboard != 0) {
                     throw new Exception("This machine only accepts 1, 5, 10, 20, 50 and 100 dollar bills...");
                 }
                 // Cast int as BigDecimal and add to balance

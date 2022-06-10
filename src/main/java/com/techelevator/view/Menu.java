@@ -50,6 +50,22 @@ public class Menu {
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
 	}
+	public int getIntFromUserInput() {
+		int inputFromUserKey = -1;
+		String userInput = in.nextLine();
+		try {
+			inputFromUserKey = Integer.parseInt(userInput);
+//			if (inputFromUserKey > 0 && inputFromUserKey <= options.length) {
+//				choice = options[inputFromUserKey - 1];
+//			}
+		} catch (NumberFormatException e) {
+			// eat the exception, an error message will be displayed below since choice will be null
+		}
+		if (inputFromUserKey == -1) {
+			out.println(System.lineSeparator() + "*** " + userInput + " is not a valid option ***" + System.lineSeparator());
+		}
+		return inputFromUserKey;
+	}
 
 
 }

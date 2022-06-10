@@ -25,7 +25,7 @@ public class FileScanner {
         this.in = getScanner(input);
     }
     public void writeLog(String s) {
-        out.print(s);
+        out.println(s);
     }
 
     public Scanner getScanner(String input) {

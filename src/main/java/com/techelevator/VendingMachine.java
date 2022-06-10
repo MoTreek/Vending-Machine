@@ -57,9 +57,9 @@ public class VendingMachine {
                 // Cast int as BigDecimal and add to balance
                 BigDecimal balance = moneyBox.addMoney(BigDecimal.valueOf(inputFromKeyboard));
                 System.out.println("Your new balance is " + balance);
-                if (inputFromKeyboard == 0) {
-                fileScanner.writeLog(String.valueOf(LocalDateTime.now()) + "Fed Money: $" + moneyBox.getMoneyHeld() );
-
+                if (inputFromKeyboard != 0) {
+                    fileScanner.writeLog(String.valueOf(LocalDateTime.now()) + "Fed Money: $" + inputFromKeyboard + " total $" + moneyBox.getMoneyHeld());
+                }
             }
         } catch (InputMismatchException imex) {
             System.out.println(inputFromKeyboard + " is not a valid dollar bill...");
@@ -95,7 +95,7 @@ public class VendingMachine {
                     System.out.println(selectedProduct.getQuantity());
                     System.out.println("$" + moneyBox.getMoneyHeld());
 
-                    //printlog
+                    fileScanner.writeLog(LocalDateTime.now() + " " + selectedProduct.getName() + " " + selectedProduct.getLocation() + " " + selectedProduct.getPrice() + " " + moneyBox.getMoneyHeld() );
                 }
                 else {
                     System.out.println("That item is sold out...");
@@ -111,8 +111,15 @@ public class VendingMachine {
     }
 
     public boolean finishTransaction(){
+       BigDecimal temp = moneyBox.getMoneyHeld();
         moneyBox.makeChange();
+        fileScanner.writeLog(LocalDateTime.now() + "give change " + temp + " " + moneyBox.getMoneyHeld());
+
+
+
         return false;
-        //writelog
+
+
+
     }
 }

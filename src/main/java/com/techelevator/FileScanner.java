@@ -19,6 +19,8 @@ public class FileScanner {
         // Need to take a string & create a FileOutputStream
         this.out = getPrintWriter(output);
         out.print("I worked!");
+        out.flush();
+        out.println("always use println...");
         // Need to take a string & create a Scanner connected to a file named String
         this.in = getScanner(input);
     }
@@ -46,10 +48,7 @@ public class FileScanner {
             System.out.println(ioex.getMessage());
         }
         try {
-            PrintWriter printWriter = new PrintWriter(new FileOutputStream(file,true));
-
-            printWriter.append("anything");
-            return printWriter;
+            return new PrintWriter(new FileOutputStream(file,true));
         } catch (FileNotFoundException fnfex) {
             System.out.println(fnfex.getMessage());
         }

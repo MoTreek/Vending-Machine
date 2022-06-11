@@ -40,8 +40,8 @@ public class MoneyBoxTest {
         moneyBox.addMoney(BigDecimal.valueOf(10));
         moneyBox.makeChange();
         BigDecimal bd = BigDecimal.valueOf(0.00);
-//        assertEquals(new BigDecimal(0.00), moneyBox.getMoneyHeld());
+
         assertTrue(bd.compareTo(moneyBox.getMoneyHeld()) == 0);
     }
-//Assert.assertArrayEquals(expected, actual);
+
 }

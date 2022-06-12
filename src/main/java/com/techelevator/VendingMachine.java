@@ -37,7 +37,9 @@ public class VendingMachine {
             if (vendable.getQuantity() == 0) {
                 System.out.println(vendable.getLocation() + " " + vendable.getName() + " ** SOLD OUT **");
             }
-            System.out.println(vendable.getLocation() + " " + vendable.getName() + " " + vendable.getPrice() + " " + vendable.getQuantity());
+            else {
+                System.out.println(vendable.getLocation() + " " + vendable.getName() + " " + vendable.getPrice() + " " + vendable.getQuantity());
+            }
         }
     }
 
@@ -73,15 +75,15 @@ public class VendingMachine {
 
     }
 
-    public void salesReport(){
+    public void salesReport() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yy_HH-mm-ss");
         String date = dateFormat.format(new Date());
 
         FileScanner outputSalesReport = new FileScanner("salesReport" + date + ".txt");
         BigDecimal moneyCounter = BigDecimal.ZERO;
 
-        for(Vendables quantity : snackInventory) {
-            outputSalesReport.writeLog(quantity.getName() + "|" + (5 - quantity.getQuantity()) +  " ");
+        for (Vendables quantity : snackInventory) {
+            outputSalesReport.writeLog(quantity.getName() + "|" + (5 - quantity.getQuantity()) + " ");
             moneyCounter = moneyCounter.add(quantity.getPrice().multiply(BigDecimal.valueOf(5 - quantity.getQuantity())));
 
         }
@@ -93,18 +95,18 @@ public class VendingMachine {
         String userInput = menu.getStringFromUserInput();
         Vendables selectedProduct = null;
 
-        for (Vendables vendable : snackInventory ) {
-            if(userInput.equals(vendable.getLocation())) {
+        for (Vendables vendable : snackInventory) {
+            if (userInput.equals(vendable.getLocation())) {
                 selectedProduct = vendable;
                 break;
             }
         }
         // TODO: 6/10/2022 Make the product location case insensitive  
-        if(selectedProduct != null) {
+        if (selectedProduct != null) {
             // If balance is GTE price then vend vendable (decrease quantity & remove price from moneybox)
-            if(moneyBox.getMoneyHeld().compareTo(selectedProduct.getPrice()) >= 0) {
+            if (moneyBox.getMoneyHeld().compareTo(selectedProduct.getPrice()) >= 0) {
                 // vend vendable
-                if(selectedProduct.isAvailable()) {
+                if (selectedProduct.isAvailable()) {
                     selectedProduct.purchaseSnack();
                     moneyBox.subtractMoney(selectedProduct.getPrice());
                     // TODO: 6/10/2022 Jazz up this output section, but get rid of quantity remaining? Hide it all in purchaseSnack()?
@@ -115,31 +117,23 @@ public class VendingMachine {
                     System.out.println("$" + moneyBox.getMoneyHeld());
 
 
-                    fileScanner.writeLog(LocalDateTime.now() + " " + selectedProduct.getName() + " " + selectedProduct.getLocation() + " " + selectedProduct.getPrice() + " " + moneyBox.getMoneyHeld() );
-                }
-                else {
+                    fileScanner.writeLog(LocalDateTime.now() + " " + selectedProduct.getName() + " " + selectedProduct.getLocation() + " " + selectedProduct.getPrice() + " " + moneyBox.getMoneyHeld());
+                } else {
                     System.out.println("That item is sold out...");
                 }
-            }
-            else {
+            } else {
                 System.out.println("The " + selectedProduct.getName() + " costs " + selectedProduct.getPrice() + " and you have insufficient funds...");
             }
-        }
-        else {
+        } else {
             System.out.println("That's not a valid item location...");
         }
     }
 
-    public boolean finishTransaction(){
-       BigDecimal temp = moneyBox.getMoneyHeld();
+    public boolean finishTransaction() {
+        BigDecimal temp = moneyBox.getMoneyHeld();
         moneyBox.makeChange();
         fileScanner.writeLog(LocalDateTime.now() + "give change " + temp + " " + moneyBox.getMoneyHeld());
 
-
-
         return false;
-
-
-
     }
 }

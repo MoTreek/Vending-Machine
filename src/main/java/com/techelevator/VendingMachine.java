@@ -3,11 +3,15 @@ package com.techelevator;
 import com.techelevator.view.Menu;
 
 import javax.print.attribute.standard.DateTimeAtProcessing;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class VendingMachine {
@@ -69,6 +73,21 @@ public class VendingMachine {
 
     }
 
+    public void salesReport(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yy_HH-mm-ss");
+        String date = dateFormat.format(new Date());
+
+        FileScanner outputSalesReport = new FileScanner("salesReport" + date + ".txt");
+        BigDecimal moneyCounter = BigDecimal.ZERO;
+
+        for(Vendables quantity : snackInventory) {
+            outputSalesReport.writeLog(quantity.getName() + "|" + (5 - quantity.getQuantity()) +  " ");
+            moneyCounter = moneyCounter.add(quantity.getPrice().multiply(BigDecimal.valueOf(5 - quantity.getQuantity())));
+
+        }
+        outputSalesReport.writeLog("**Total** $" + moneyCounter + "\n");
+    }
+
     public void selectProduct(Menu menu) {
         System.out.println("Enter item code: ");
         String userInput = menu.getStringFromUserInput();
@@ -94,6 +113,7 @@ public class VendingMachine {
                     System.out.println(selectedProduct.getSound());
                     System.out.println(selectedProduct.getQuantity());
                     System.out.println("$" + moneyBox.getMoneyHeld());
+
 
                     fileScanner.writeLog(LocalDateTime.now() + " " + selectedProduct.getName() + " " + selectedProduct.getLocation() + " " + selectedProduct.getPrice() + " " + moneyBox.getMoneyHeld() );
                 }

@@ -21,6 +21,12 @@ public class FileScanner {
         // Need to take a string & create a Scanner connected to a file named String
         this.in = getScanner(input);
     }
+
+    public FileScanner(String output) {
+        // Need to take a string & create a FileOutputStream
+        this.out = getPrintWriter(output);
+    }
+
     public void writeLog(String s) {
         out.println(s);
         out.flush();
